@@ -1,26 +1,109 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>WebUSB Serial Sample Application</title>
-  </head>
+    <head>
+        <title>Takahoot</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./node_modules/bulma/css/bulma.css">
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+</head>
 
 
 <body>
     <script src="index.js"></script>
 
-    <button id="connect" style="visibility: initial">Connect To WebUSB Device</button>
-    <br><br><label for="input">Sender: </label> <br>
-    <button id="sendConnect">Connect</button>
-    <button id="calibrate">Calibrate all</button>
-    <button id="changeTolerance">Change Tolerance to YY for target XX (00 to 03)</button>
-    <button id="enableTarget">Enable target XX</button>
-    <button id="disableTarget">Disable target XX</button>
-    <button id="disableTargetAndBlink">Disable target XX and blink</button>
-    <button id="disableTargetsAndBlink">Disable all targets and blink</button>
-    <button id="getState">Get State</button>
-    <button id="reset">Reset</button>
-    <textarea rows="25" cols="80" id="editor">303100310131023103</textarea>
-    <br><button id="submit">Send</button>
-    <br><br>
-    <label for="output">Receiver: </label> </br>
-    <textarea rows="25" cols="80" id="output"></textarea>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://github.com/resourcepool">
+                <img src="assets/resourcepool.png" width="60" alt="Takahoot">
+            </a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item">
+                    Home
+                </a>
+
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <a class="navbar-link">
+                        More
+                    </a>
+
+                    <div class="navbar-dropdown">
+                        <a class="navbar-item">
+                            Debug
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary">
+                            <strong>Connect</strong>
+                        </a>
+                        <a class="button is-light">
+                            Play
+                        </a>
+                        <a class="button is-light">
+                            Config
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="columns">
+        <div class="column">
+            <div class="container">
+                Target A
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                Target B
+            </div>
+        </div>
+    </div>
+
+    <div class="columns">
+        <div class="column">
+            <div class="container">
+                Target C
+            </div>
+        </div>
+        <div class="column">
+            <div class="container">
+                Target D
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <button id="connect" style="visibility: initial">Connect To WebUSB Device</button>
+        <br><br><label for="input">Sender: </label> <br>
+        <button id="sendConnect">Connect</button>
+        <button id="calibrate">Calibrate all</button>
+        <button id="changeTolerance">Change Tolerance to YY for target XX (00 to 03)</button>
+        <button id="enableTarget">Enable target XX</button>
+        <button id="disableTarget">Disable target XX</button>
+        <button id="disableTargetAndBlink">Disable target XX and blink</button>
+        <button id="disableTargetsAndBlink">Disable all targets and blink</button>
+        <button id="getState">Get State</button>
+        <button id="reset">Reset</button>
+        <textarea rows="25" cols="80" id="editor">303100310131023103</textarea>
+        <br><button id="submit">Send</button>
+        <br><br>
+        <label for="output">Receiver: </label> </br>
+        <textarea rows="25" cols="80" id="output"></textarea>
+    </div>
 </body>
+</html>
