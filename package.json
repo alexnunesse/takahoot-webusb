@@ -1,0 +1,11 @@
+{
+  "name": "takahoot-webusb",
+  "version": "1.0.0",
+  "description": "Takahoot WebUSB client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alex Nunes",
+  "license": "ISC"
+}
