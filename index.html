@@ -4,7 +4,6 @@
         <title>Takahoot</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="./node_modules/bulma/css/bulma.css">
-        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 </head>
 
 
@@ -14,7 +13,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
             <a class="navbar-item" href="https://github.com/resourcepool">
-                <img src="assets/resourcepool.png" width="60" alt="Takahoot">
+                <img src="assets/resourcepool.png" width="30" alt="Takahoot">
             </a>
 
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -61,33 +60,113 @@
         </div>
     </nav>
 
-    <div class="columns">
-        <div class="column">
-            <div class="container">
-                Target A
+    <div class="columns is-2">
+        <div class="column is-half">
+            <div class="container tile is-8 has-text-centered" style="border: 1.5px solid #d6d6d6">
+                <div class="tile is-parent is-vertical">
+                    <h1 class="title">Target A</h1>
+                    <div class="tile">
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-danger box">
+                                <p class="title">1</p>
+                            </article>
+                            <article class="tile is-child notification is-warning box">
+                                <p class="title">2</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-info box">
+                                <p class="title">3</p>
+                            </article>
+                            <article class="tile is-child notification is-success box">
+                                <p class="title">4</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="column">
-            <div class="container">
-                Target B
+        <div class="column is-half">
+            <div class="container tile is-8 has-text-centered" style="border: 1.5px solid #d6d6d6">
+                <div class="tile is-parent is-vertical">
+                    <h1 class="title">Target B</h1>
+                    <div class="tile">
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-danger box">
+                                <p class="title">1</p>
+                            </article>
+                            <article class="tile is-child notification is-warning box">
+                                <p class="title">2</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-info box">
+                                <p class="title">3</p>
+                            </article>
+                            <article class="tile is-child notification is-success box">
+                                <p class="title">4</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="columns">
-        <div class="column">
-            <div class="container">
-                Target C
+    <div class="columns is-2">
+        <div class="column is-half">
+            <div class="container tile is-8 has-text-centered" style="border: 1.5px solid #d6d6d6">
+                <div class="tile is-parent is-vertical">
+                    <h1 class="title">Target C</h1>
+                    <div class="tile">
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-danger box">
+                                <p class="title">1</p>
+                            </article>
+                            <article class="tile is-child notification is-warning box">
+                                <p class="title">2</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-info box">
+                                <p class="title">3</p>
+                            </article>
+                            <article class="tile is-child notification is-success box">
+                                <p class="title">4</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="column">
-            <div class="container">
-                Target D
+        <div class="column is-half">
+            <div class="container tile is-8 has-text-centered" style="border: 1.5px solid #d6d6d6">
+                <div class="tile is-parent is-vertical">
+                    <h1 class="title">Target D</h1>
+                    <div class="tile">
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-danger box">
+                                <p class="title">1</p>
+                            </article>
+                            <article class="tile is-child notification is-warning box">
+                                <p class="title">2</p>
+                            </article>
+                        </div>
+                        <div class="tile is-parent is-vertical">
+                            <article class="tile is-child notification is-info box">
+                                <p class="title">3</p>
+                            </article>
+                            <article class="tile is-child notification is-success box">
+                                <p class="title">4</p>
+                            </article>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <div class="container">
+    <div class="container" style="display: none">
         <button id="connect" style="visibility: initial">Connect To WebUSB Device</button>
         <br><br><label for="input">Sender: </label> <br>
         <button id="sendConnect">Connect</button>

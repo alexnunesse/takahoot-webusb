@@ -1,9 +1,6 @@
-var serial = {};
+let serial = {};
 
 (function() {
-    'use strict';
-
-
 
     serial.getPorts = function() {
         return navigator.usb.getDevices().then(devices => {
