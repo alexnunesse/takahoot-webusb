@@ -9,6 +9,7 @@
 
 <body>
     <script src="index.js"></script>
+    <script type="module" src="App.mjs"></script>
 
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
@@ -45,7 +46,7 @@
             <div class="navbar-end">
                 <div class="navbar-item">
                     <div class="buttons">
-                        <a class="button is-primary">
+                        <a id="usb-connect" class="button is-primary">
                             <strong>Connect</strong>
                         </a>
                         <a class="button is-light">
@@ -60,111 +61,7 @@
         </div>
     </nav>
 
-    <div class="columns is-2">
-        <div class="column is-half">
-            <div class="container tile is-8 has-text-centered" style="border: 1.5px solid #d6d6d6">
-                <div class="tile is-parent is-vertical">
-                    <h1 class="title">Target A</h1>
-                    <div class="tile">
-                        <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-danger box">
-                                <p class="title">1</p>
-                            </article>
-                            <article class="tile is-child notification is-warning box">
-                                <p class="title">2</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-info box">
-                                <p class="title">3</p>
-                            </article>
-                            <article class="tile is-child notification is-success box">
-                                <p class="title">4</p>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="column is-half">
-            <div class="container tile is-8 has-text-centered" style="border: 1.5px solid #d6d6d6">
-                <div class="tile is-parent is-vertical">
-                    <h1 class="title">Target B</h1>
-                    <div class="tile">
-                        <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-danger box">
-                                <p class="title">1</p>
-                            </article>
-                            <article class="tile is-child notification is-warning box">
-                                <p class="title">2</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-info box">
-                                <p class="title">3</p>
-                            </article>
-                            <article class="tile is-child notification is-success box">
-                                <p class="title">4</p>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="columns is-2">
-        <div class="column is-half">
-            <div class="container tile is-8 has-text-centered" style="border: 1.5px solid #d6d6d6">
-                <div class="tile is-parent is-vertical">
-                    <h1 class="title">Target C</h1>
-                    <div class="tile">
-                        <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-danger box">
-                                <p class="title">1</p>
-                            </article>
-                            <article class="tile is-child notification is-warning box">
-                                <p class="title">2</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-info box">
-                                <p class="title">3</p>
-                            </article>
-                            <article class="tile is-child notification is-success box">
-                                <p class="title">4</p>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="column is-half">
-            <div class="container tile is-8 has-text-centered" style="border: 1.5px solid #d6d6d6">
-                <div class="tile is-parent is-vertical">
-                    <h1 class="title">Target D</h1>
-                    <div class="tile">
-                        <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-danger box">
-                                <p class="title">1</p>
-                            </article>
-                            <article class="tile is-child notification is-warning box">
-                                <p class="title">2</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent is-vertical">
-                            <article class="tile is-child notification is-info box">
-                                <p class="title">3</p>
-                            </article>
-                            <article class="tile is-child notification is-success box">
-                                <p class="title">4</p>
-                            </article>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div id="el"></div>
 
     <div class="container" style="display: none">
         <button id="connect" style="visibility: initial">Connect To WebUSB Device</button>
