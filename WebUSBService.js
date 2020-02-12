@@ -10,22 +10,15 @@ const ARDUINO_CONTROL_CONNECT = 0x01; // Vendor-specific, 0x00 for DISCONNECT
 const RECIPIENT_INTERFACE_NUMBER = 0x02; // Interface number on the recipient
 
 export default class WebUSBService {
-    devices;
+    devices = [];
 
     async connect() {
         try {
             if (this.devices && this.devices.length > 0) {
-                console.info('Configure devices...');
-                console.info(this.devices);
                 for (let device of this.devices) {
-                    console.info(device);
-                    console.info('Opening');
                     await device.open();
-                    console.info('Selecting configuration');
                     await device.selectConfiguration(CONFIG_NUMBER);
-                    console.info('Claiming interface');
                     await device.claimInterface(INTERFACE_NUMBER);
-                    console.info('Controlling transfer out');
                     await device.controlTransferOut({
                         requestType: REQUEST_TYPE,
                         recipient: TRANSFER_RECIPIENT,
@@ -33,8 +26,6 @@ export default class WebUSBService {
                         value: ARDUINO_CONTROL_CONNECT,
                         index: RECIPIENT_INTERFACE_NUMBER
                     });
-                    console.info('Device configured !');
-                    console.info(device);
                 }
                 return this.devices;
             }
@@ -50,8 +41,6 @@ export default class WebUSBService {
         const authorizedDevice = await navigator.usb.requestDevice({
             filters: [{ vendorId: ARDUINO_VENDOR_ID, productId: ARDUINO_PRODUCT_ID }]
         });
-        console.info('Devices connected !!!');
-        console.info(authorizedDevice);
-        this.devices = [authorizedDevice];
+        this.devices.push(authorizedDevice);
     };
 }

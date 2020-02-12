@@ -45,28 +45,12 @@ const webUSBService = new WebUSBService();
 
 window.onload = () => {
     document.querySelector("#usb-connect").onclick = function () {
-        webUSBService.configureNewDevices().then(() => {
-            webUSBService.connect().then(() => {
-                console.info("Aaaaaall gooooood !");
-            })
-        });
+        webUSBService.configureNewDevices().then(() => webUSBService.connect);
     };
+
+    navigator.usb.getDevices()
+        .then(devices => devices.forEach((d, i) => mount(document.body, new Target("Target " + (i + 1)))));
 };
-
-let DOMTargets = [
-    new Target("Target A"),
-    new Target("Target B"),
-    new Target("Target C"),
-    new Target("Target D"),
-];
-
-DOMTargets.forEach(t => mount(document.body, t));
-
-//TODO WebUSB stuff
-// DOMException: Must be handling a user gesture to show a permission request.
-// DOMException: Access denied.
-
-
 
 //TODO Kahoot stuff
 /*let sessions = [
