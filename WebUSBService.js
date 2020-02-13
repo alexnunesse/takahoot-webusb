@@ -43,4 +43,49 @@ export default class WebUSBService {
         });
         this.devices.push(authorizedDevice);
     };
+
+    async getDevices() {
+        this.devices = await navigator.usb.getDevices();
+        return this.devices;
+    }
+
+    send(targetIndex, message) {
+        console.info(this.devices[targetIndex]);
+        const {
+            endpointNumber
+        } = this.devices[targetIndex].configuration.interfaces[INTERFACE_NUMBER].alternates[0].endpoints[1];
+        return this.devices[targetIndex].transferOut(endpointNumber, hexStringToBytes(message));
+    }
+}
+
+function hexStringToByte(byteAsHexString) {
+    return parseInt(byteAsHexString, 16);
+}
+
+function hexStringToBytes(hexStr) {
+    const SEPARATORS = new RegExp('[-:]', 'g');
+    let str = hexStr.replace(SEPARATORS,'');
+    let size = str.length / 2;
+    let bytes = new Uint8Array(size + 2);
+    for (let i = 0; i < size; ++i) {
+        bytes[i] = hexStringToByte(str.substr(2 *  i, 2));
+    }
+    bytes[size] = 0x0D;
+    bytes[size + 1] = 0x0A;
+    return bytes;
+}
+
+function byteToHexString(byte) {
+    return (((byte & 0xF0) >> 4).toString(16) + (byte & 0x0F).toString(16)).toLowerCase();
+}
+
+function bytesToPrettyHexString(bytes) {
+    let hex = '';
+    for (let byte of bytes.values()) {
+        if (hex.length > 0) {
+            hex += ':';
+        }
+        hex += byteToHexString(byte);
+    }
+    return hex.toLowerCase();
 }

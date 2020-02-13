@@ -25,12 +25,12 @@ let serial = {};
     serial.Port.prototype.connect = async function() {
         let readLoop = () => {
           console.log("In readloop");
-          console.log(this.device_)
+          console.log(this.device_);
             const {
                 endpointNumber
-            } = this.device_.configuration.interfaces[0].alternates[0].endpoints[0]
+            } = this.device_.configuration.interfaces[0].alternates[0].endpoints[0];
             const that = this;
-            console.log(endpointNumber)
+            console.log(endpointNumber);
             this.device_.transferIn(endpointNumber, 64).then(result => {
                 that.onReceive(result.data);
                 readLoop();
