@@ -12,6 +12,24 @@ const RECIPIENT_INTERFACE_NUMBER = 0x02; // Interface number on the recipient
 export default class WebUSBService {
     devices = [];
 
+    async read(deviceIndex) {
+        try {
+            if (this.devices[deviceIndex] && this.devices[deviceIndex].opened) {
+                // Read the bytes from the device
+                const bufferLength = 64;
+                const payload = await this.devices[deviceIndex].transferIn(IN_ENDPOINT, bufferLength);
+                const decoder = new TextDecoder();
+                const decodedPayload = decoder.decode(payload.data).split("/")[1];
+                console.log(`Read data: '${decodedPayload}'.`);
+            }
+        } catch (e) {
+            console.error(
+                `Error while reading from the device:\n${e.toString()}`
+            );
+            throw e;
+        }
+    };
+
     async connect() {
         try {
             if (this.devices && this.devices.length > 0) {
@@ -49,12 +67,12 @@ export default class WebUSBService {
         return this.devices;
     }
 
-    send(targetIndex, message) {
-        console.info(this.devices[targetIndex]);
+    send(deviceIndex, message) {
         const {
             endpointNumber
-        } = this.devices[targetIndex].configuration.interfaces[INTERFACE_NUMBER].alternates[0].endpoints[1];
-        return this.devices[targetIndex].transferOut(endpointNumber, hexStringToBytes(message));
+        } = this.devices[deviceIndex].configuration.interfaces[INTERFACE_NUMBER].alternates[0].endpoints[1];
+        console.info(this.devices[deviceIndex], endpointNumber);
+        return this.devices[deviceIndex].transferOut(endpointNumber, hexStringToBytes(message));
     }
 }
 

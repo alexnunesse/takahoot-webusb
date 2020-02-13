@@ -46,7 +46,11 @@ export default class TargetActions {
 
         this.getState.onclick = evt => {
             console.info('Get target state !');
-            webUSBService.send(0, "38");
+            webUSBService.send(0, "38")
+                .then(webUSBService.read)
+                .catch(e => {
+                    console.error("ERROR: " + e)
+                });
         };
 
         this.reset.onclick = evt => {

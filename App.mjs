@@ -12,19 +12,12 @@ window.onload = () => {
 
     webUSBService.getDevices()
         .then(devices =>
-            devices.forEach((d, i) => {
-                webUSBService.connect().then(() => {
-                    mount(document.getElementById("el"),
-                        new Target(webUSBService, "Target " + (i + 1)));
-                    d.onReceive = data => {
-                        console.log("Received:", bytesToPrettyHexString(data));
-                    };
-                    d.onReceiveError = error => {
-                        console.error(error);
-                        port.disconnect();
-                    };
-                });
-            })
+            webUSBService.connect().then(() => {
+                devices.forEach((d, i) => {
+                        mount(document.getElementById("el"),
+                            new Target(webUSBService, "Target " + (i + 1)));
+                    });
+                })
         );
 };
 
