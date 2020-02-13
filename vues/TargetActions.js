@@ -1,7 +1,9 @@
 import { el } from "/node_modules/redom/dist/redom.es.js";
+import WebUSBService from '../WebUSBService.js';
 
 export default class TargetActions {
-    constructor(webUSBService) {
+
+    constructor(targetIndex) {
         this.el = el("p.buttons",
             [
                 this.connect = el("button.button", { title: "Connect" },
@@ -9,7 +11,7 @@ export default class TargetActions {
                         el("i.fas.fa-link")
                     )
                 ),
-                this.calibrate = el("button.button", { title: "Calibrate" },
+                this.calibrate = el("button.button", { title: "Calibrate", disabled: true },
                     el("span.icon.is-small",
                         el("i.fas.fa-thermometer-half")
                     )
@@ -33,28 +35,39 @@ export default class TargetActions {
         );
 
         this.connect.onclick = evt => {
-            console.info('Connect target !')
+            console.info('Connect target !');
+            WebUSBService.write(targetIndex, "30")
+                .then(() => {
+                    WebUSBService.read(targetIndex);
+                })
+                .catch(e => {
+                    console.error("ERROR: " + e)
+                });
         };
 
         this.calibrate.onclick = evt => {
-            console.info('Calibrate target !')
+            console.info('Calibrate target !');
         };
 
         this.disable.onclick = evt => {
-            console.info('Disable target !')
+            console.info('Disable target and blink !');
+            WebUSBService.write(targetIndex, "37");
         };
 
         this.getState.onclick = evt => {
             console.info('Get target state !');
-            webUSBService.send(0, "38")
-                .then(webUSBService.read)
+            WebUSBService.write(targetIndex, "38")
+                .then(() => {
+                    WebUSBService.read(targetIndex);
+                })
                 .catch(e => {
                     console.error("ERROR: " + e)
                 });
         };
 
         this.reset.onclick = evt => {
-            console.info('Reset target !')
+            console.info('Reset target !');
+            WebUSBService.write(targetIndex, "3F");
         }
     }
 }

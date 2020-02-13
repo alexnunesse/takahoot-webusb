@@ -9,9 +9,6 @@ window.angular.isString = () => false;
 window.angular.isArray = () => false;
 window.angular.isDate = () => false;
 
-//const {store} = require('@/shared/store');
-//const {gameReset} = require( '@/target-service/service');
-
 export default class KahootSession {
     joinPromise;
 
@@ -53,7 +50,7 @@ export default class KahootSession {
     onQuestionStart(question) {
         console.log(`[player ${this.name}] Question started`);
         this.question = question;
-        //TODO: gameReset(this.targetPosition);
+        //TODO: game reset
     }
 
     answerQuestion(answer) {
@@ -70,6 +67,6 @@ export default class KahootSession {
 
     onQuizEnd() {
         console.log(`[player ${this.name}] Quiz end`);
-        //TODO: store.dispatch(quizEnd());
+        //TODO: dispatch quiz end
     }
 };
