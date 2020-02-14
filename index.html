@@ -12,57 +12,12 @@
     <script src="index.js"></script>
     <script type="module" src="App.mjs"></script>
 
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-        <div class="navbar-brand">
-            <a class="navbar-item" href="https://github.com/resourcepool">
-                <img src="assets/resourcepool.png" width="30" alt="Takahoot">
-            </a>
 
-            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </a>
-        </div>
+    <div id="nav"></div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
-            <div class="navbar-start">
-                <a class="navbar-item">
-                    Home
-                </a>
+    <div id="game" class="container"></div>
 
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a class="navbar-link">
-                        More
-                    </a>
-
-                    <div class="navbar-dropdown">
-                        <a class="navbar-item">
-                            Debug
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="navbar-end">
-                <div class="navbar-item">
-                    <div class="buttons">
-                        <a id="usb-connect" class="button is-primary">
-                            <strong>Connect</strong>
-                        </a>
-                        <a class="button is-light">
-                            Play
-                        </a>
-                        <a class="button is-light">
-                            Config
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <div id="el" class="container"></div>
+    <div id="targets" class="container"></div>
 
     <div class="container" style="display: none">
         <button id="connect" style="visibility: initial">Connect To WebUSB Device</button>

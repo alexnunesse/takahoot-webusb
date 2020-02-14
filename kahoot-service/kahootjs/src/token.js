@@ -4,6 +4,7 @@ class TokenJS {
 	static requestToken(sessionID, callback) {
 		// Make a GET request to the endpoint and get 2 tokens
 		const endpoint = 'https://kahoot.it' + consts.TOKEN_ENDPOINT + sessionID + "/?" + (new Date).getTime();
+		let token1;
 		return fetch(endpoint, {
 			host: consts.ENDPOINT_URI,
 			path: endpoint,
@@ -13,26 +14,19 @@ class TokenJS {
 				'host': 'kahoot.it',
 				'referer': 'https://kahoot.it/',
 				'accept-language': 'en-US,en;q=0.8',
-				'accept': '*/*',
-				'Access-Control-Allow-Origin': '*'
+				'accept': '*/*'
 			}
 		}).then(res => {
-			res.on('data', chunk => {
-				// The first token is the session token, which is given as a header by the server encoded in base64
-				var token1 = res.headers['x-kahoot-session-token'];
-				var body = chunk.toString('utf8');
-				var bodyObject = null;
-				var challenge = "";
-				try {
-					bodyObject = JSON.parse(body);
-				} catch (e) {
-					callback(null, e);
-					return;
-				}
-				// The second token is given as a "challenge", which must be eval'd by the client to be decoded
-				var challenge = bodyObject.challenge;
-				callback(token1, challenge);
-			});
+			// The first token is the session token, which is given as a header by the server encoded in base64
+			if (!res.headers.get("x-kahoot-session-token")) {
+				throw new Error("Kahoot session header undefined, the room problably does not exist.")
+			}
+			token1 = res.headers.get('x-kahoot-session-token');
+			return res.json()
+		}).then(data => {
+			// The second token is given as a "challenge", which must be eval'd by the client to be decoded
+			let challenge = data.challenge;
+			callback(token1, challenge);
 		}).catch(err => {
 			console.log('request error:', err);
 			throw new Error(err);
@@ -63,9 +57,10 @@ class TokenJS {
 	static decodeBase64(b64) {
 		// for the session token
 		try {
-			return new Buffer.from(b64, "base64").toString("ascii");
+			return atob(b64);
 		} catch (e) {
-			console.log("Error! (Most likely not a kahoot game)");
+			console.error("Most likely not a kahoot game");
+			throw e;
 		}
 	}
 	static concatTokens(headerToken, challengeToken) {
