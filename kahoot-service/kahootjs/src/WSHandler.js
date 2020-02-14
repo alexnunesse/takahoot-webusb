@@ -1,6 +1,4 @@
 import EventEmitter from './EventEmitter.js';
-//import conf = require( '@/common/conf.json');
-// var WebSocket = require('ws'); using browser WS
 import consts from './consts.js';
 
 class WSHandler extends EventEmitter {

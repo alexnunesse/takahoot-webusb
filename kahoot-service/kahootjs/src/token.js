@@ -33,7 +33,7 @@ class TokenJS {
 		});
 	}
 	static solveChallenge(challenge) {
-		var solved = "";
+		let solved = "";
 		challenge = challenge.replace(/(\u0009|\u2003)/mg, "");
 		challenge = challenge.replace(/this /mg, "this");
 		challenge = challenge.replace(/ *\. */mg, ".");
@@ -48,7 +48,7 @@ class TokenJS {
 		challenge = challenge.replace("this.angular.isArray(offset)", "true");
 		(() => {
 			// Concat the method needed in order to solve the challenge, then eval the string
-			var solver = Function(consts.EVAL_ + challenge);
+			let solver = Function(consts.EVAL_ + challenge);
 			// Execute the string, and get back the solved token
 			solved = solver().toString();
 		})();
@@ -65,20 +65,21 @@ class TokenJS {
 	}
 	static concatTokens(headerToken, challengeToken) {
 		// Combine the session token and the challenge token together to get the string needed to connect to the websocket endpoint
-		for (var token = "", i = 0; i < headerToken.length; i++) {
-		    var char = headerToken.charCodeAt(i);
-		    var mod = challengeToken.charCodeAt(i % challengeToken.length);
-		    var decodedChar = char ^ mod;
+		let token = "";
+		for (let i = 0; i < headerToken.length; i++) {
+		    let char = headerToken.charCodeAt(i);
+		    let mod = challengeToken.charCodeAt(i % challengeToken.length);
+		    let decodedChar = char ^ mod;
 		    token += String.fromCharCode(decodedChar);
 		}
 		return token;
 	}
 	static resolve(sessionID, callback) {
-		var me = this;
+		let me = this;
 		me.requestToken(sessionID, (headerToken, challenge) => {
-			var token1 = this.decodeBase64(headerToken);
-			var token2 = this.solveChallenge(challenge);
-			var resolvedToken = this.concatTokens(token1, token2);
+			let token1 = this.decodeBase64(headerToken);
+			let token2 = this.solveChallenge(challenge);
+			let resolvedToken = this.concatTokens(token1, token2);
 			callback(resolvedToken);
 		});
 	}

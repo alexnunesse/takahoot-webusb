@@ -9,7 +9,7 @@ class EventEmitter{
     }
 
     emit(event, data){
-        let cbs = this.callbacks[event]
+        let cbs = this.callbacks[event];
         if(cbs){
             cbs.forEach(cb => cb(data))
         }

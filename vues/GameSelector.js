@@ -15,6 +15,7 @@ export default class GameSelector {
         this.connect.onclick = evt => {
             console.info('Connecting to game: ' + this.gamePin.value);
             setAttr(this.connect, "disabled", true);
+            setAttr(this.gamePin, "disabled", true);
             WebUSBService.getDevices()
                 .then(devices => {
                     devices.forEach((d, i) => {
